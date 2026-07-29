@@ -7,6 +7,36 @@ function App() {
   const { t, i18n } = useTranslation();
   const [darkMode, setDarkMode] = useState(false);
 
+  const [showToast, setShowToast] = useState(false);
+
+  const handleFormSubmit = async (e) => {
+    e.preventDefault(); // Evita que la página recargue o cambie de link
+    const form = e.target;
+    const formData = new FormData(form);
+
+    try {
+      // Enviamos el correo silenciosamente
+      await fetch("https://formsubmit.co/ajax/jhver2001@gmail.com", {
+        method: "POST",
+        body: formData,
+        headers: {
+          'Accept': 'application/json'
+        }
+      });
+      
+      // Mostramos el Toast de éxito
+      setShowToast(true);
+      form.reset(); // Limpiamos los campos del formulario
+      
+      // Ocultamos el Toast después de 3.5 segundos
+      setTimeout(() => {
+        setShowToast(false);
+      }, 3500);
+    } catch (error) {
+      console.error("Error al enviar el correo", error);
+    }
+  };
+
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
@@ -308,15 +338,39 @@ function App() {
         <section id="contacto" className="section-container animate-on-scroll" style={{ padding: '80px 30px', display: 'flex', justifyContent: 'center', margin: '40px auto 100px auto' }}>
           <div style={{ maxWidth: '600px', width: '100%', textAlign: 'center', backgroundColor: darkMode ? 'rgba(15, 23, 42, 0.7)' : 'rgba(0, 43, 91, 0.85)', backdropFilter: 'blur(10px)', padding: '50px', borderRadius: '25px', boxShadow: '0 20px 50px rgba(0,0,0,0.2)' }}>
             <h2 style={{ margin: '0 0 35px 0', fontSize: '2.8rem', color: '#FF7F50' }}>{t('contacto_titulo')}</h2>
-            <form action="https://formsubmit.co/jhver2001@gmail.com" method="POST" style={{ display: 'flex', flexDirection: 'column', gap: '20px', marginBottom: '35px' }}>
+            <form onSubmit={handleFormSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '20px', marginBottom: '35px' }}>
               <input type="hidden" name="_captcha" value="false" />
-              <input type="hidden" name="_next" value="http://localhost:5173/" />
               <input type="text" name="name" placeholder={t('form_nombre')} required className="input-field" style={{ padding: '16px', borderRadius: '10px', border: '1px solid #475569', backgroundColor: 'rgba(255,255,255,0.1)', color: 'white', fontSize: '1.1rem' }} />
               <textarea name="message" placeholder={t('form_mensaje')} required rows="4" className="input-field" style={{ padding: '16px', borderRadius: '10px', border: '1px solid #475569', backgroundColor: 'rgba(255,255,255,0.1)', color: 'white', fontSize: '1.1rem', resize: 'vertical' }}></textarea>
               <button type="submit" className="btn-primary" style={{ backgroundColor: '#FF7F50', color: 'white', padding: '16px', border: 'none', borderRadius: '10px', fontSize: '1.2rem', fontWeight: 'bold', cursor: 'pointer', marginTop: '10px' }}>
                 {t('btn_enviar')}
               </button>
             </form>
+
+           {/* NOTIFICACIÓN TOAST (Mensaje Emergente) */}
+            <div style={{
+              position: 'fixed',
+              bottom: '40px',
+              left: '50%',
+              transform: showToast ? 'translateX(-50%) translateY(0)' : 'translateX(-50%) translateY(100px)',
+              opacity: showToast ? 1 : 0,
+              visibility: showToast ? 'visible' : 'hidden',
+              backgroundColor: '#10B981', 
+              color: 'white',
+              padding: '14px 28px',
+              borderRadius: '30px',
+              boxShadow: '0 10px 25px rgba(16, 185, 129, 0.4)',
+              fontWeight: 'bold',
+              fontSize: '1.1rem',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '12px',
+              transition: 'all 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55)',
+              zIndex: 9999
+            }}>
+              <FaCheckCircle style={{ fontSize: '1.4rem' }} />
+              {i18n.language === 'es' ? '¡Enviado exitosamente!' : 'Sent successfully!'}
+            </div>
             <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '40px' }}>
               <a href="https://www.linkedin.com/in/julio-santos-23bb511aa/" target="_blank" rel="noreferrer" className="icon-social" title="LinkedIn">
                 <FaLinkedin />

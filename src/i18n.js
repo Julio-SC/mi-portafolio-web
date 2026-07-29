@@ -56,10 +56,10 @@ const resources = {
       "cert_titulo": "Cursos y Certificaciones",
       "cert_1": "English Business",
       "cert_2": "International Business Management",
-      "cert_3": "International Law",
-      "cert_4": "Logistics and Supply Chain",
+      "cert_3": "Derecho Internacional",
+      "cert_4": "Logística y Cadena de Suministro",
       "cert_5": "Conscious Leadership (Certificado CBC)",
-      "cert_6": "Positive Leadership",
+      "cert_6": "Liderazgo Positivo",
       
       "descargar_cv_titulo": "Mi Trayectoria en Detalle",
       "btn_descargar_cv": "Descargar CV",
