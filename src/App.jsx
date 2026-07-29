@@ -118,6 +118,25 @@ function App() {
           .skill-badge:hover { 
             background-color: #0077B6; transform: translateY(-3px); box-shadow: 0 6px 15px rgba(0, 119, 182, 0.4); 
           }
+.lang-btn {
+            background-color: transparent;
+            border: 1.5px solid ${theme.border}; /* Borde un poco más fino y elegante */
+            color: ${theme.navText};
+            font-family: inherit; /* Hace que use exactamente la misma letra que tu menú */
+            font-weight: 600; /* Mismo grosor que "About Me", "Experience", etc. */
+            font-size: 1.05rem;
+            padding: 6px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            letter-spacing: 1px;
+          }
+          .lang-btn:hover {
+            border-color: #FF7F50;
+            color: #FF7F50;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 127, 80, 0.2);
+          }
 
           @media (max-width: 768px) {
             .nav-container { 
@@ -167,8 +186,8 @@ function App() {
             </div>
 
             <div style={{ display: 'flex', alignItems: 'center', gap: '20px', borderLeft: `2px solid ${theme.border}`, paddingLeft: '20px' }}>
-              <button onClick={toggleLanguage} className="btn-primary" title="Cambiar Idioma" style={{ backgroundColor: 'transparent', border: 'none', cursor: 'pointer', padding: '0', display: 'flex', borderRadius: '50%' }}>
-                <img src={i18n.language === 'es' ? 'https://flagcdn.com/w40/mx.png' : 'https://flagcdn.com/w40/us.png'} alt="Bandera" style={{ width: '34px', height: '34px', borderRadius: '50%', objectFit: 'cover', border: `2px solid ${theme.border}` }} />
+              <button onClick={toggleLanguage} className="lang-btn" title="Cambiar Idioma">
+                {i18n.language === 'es' ? 'ES' : 'EN'}
               </button>
               <button onClick={toggleDarkMode} className="btn-primary" style={{ backgroundColor: 'transparent', border: 'none', cursor: 'pointer', fontSize: '1.8rem', padding: '4px' }}>
                 {darkMode ? '☀️' : '🌙'}
