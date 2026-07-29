@@ -120,8 +120,26 @@ function App() {
           }
 
           @media (max-width: 768px) {
-            .nav-container { padding: 12px 20px !important; flex-wrap: wrap; justify-content: center !important; border-radius: 20px !important; }
-            .nav-links { gap: 12px !important; font-size: 1rem !important; }
+            .nav-container { 
+              width: 100% !important; /* Evita que se desborde a los lados */
+              padding: 15px !important; 
+              flex-direction: column !important; /* Apila los botones debajo de los textos */
+              gap: 15px !important; 
+              border-radius: 20px !important; 
+            }
+            .nav-links { 
+              flex-wrap: wrap !important; 
+              justify-content: center !important; 
+              gap: 10px 15px !important; 
+              font-size: 0.95rem !important; 
+            }
+            /* Ocultar el borde separador en celular y centrar los botones de sol/idioma */
+            .nav-container > div:last-child {
+              border-left: none !important;
+              padding-left: 0 !important;
+              justify-content: center !important;
+              width: 100% !important;
+            }
             .hero-title { font-size: 3.5rem !important; }
             .hero-subtitle { font-size: 1.4rem !important; }
             .section-container { padding: 50px 20px !important; }
