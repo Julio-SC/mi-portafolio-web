@@ -148,6 +148,16 @@ function App() {
           .skill-badge:hover { 
             background-color: #0077B6; transform: translateY(-3px); box-shadow: 0 6px 15px rgba(0, 119, 182, 0.4); 
           }
+
+.date-hover {
+            transition: all 0.3s ease;
+          }
+          .date-hover:hover {
+            background-color: #0077B6 !important; /* Cambiado a Azul */
+            color: #FFFFFF !important;
+            transform: translateY(-3px);
+            box-shadow: 0 4px 12px rgba(0, 119, 182, 0.4); /* Sombra azul para que combine */
+          }
 .lang-btn {
             background-color: transparent;
             border: 1.5px solid ${theme.border}; /* Borde un poco más fino y elegante */
@@ -264,10 +274,12 @@ function App() {
                 <div className="timeline-dot" style={{ borderColor: theme.bgCard }}></div>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: '10px', flexWrap: 'wrap', gap: '10px' }}>
                   <h3 style={{ margin: 0, color: theme.textPrimary, fontSize: '1.5rem' }}>{t(`exp_${num}_puesto`)}</h3>
-                  <span style={{ color: '#FF7F50', fontWeight: 'bold', fontSize: '1rem', backgroundColor: darkMode ? '#1e293b' : '#fff', padding: '6px 18px', borderRadius: '20px', border: `1px solid ${theme.border}` }}>{t(`exp_${num}_fecha`)}</span>
+                  <span className="date-hover" style={{ color: '#FF7F50', fontWeight: 'bold', fontSize: '1rem', backgroundColor: darkMode ? '#1e293b' : '#fff', padding: '6px 18px', borderRadius: '20px', border: `1px solid ${theme.border}` }}>
+  {t(`exp_${num}_fecha`)}
+</span>
                 </div>
                 <h4 style={{ margin: '0 0 15px 0', color: theme.textMuted, fontSize: '1.15rem' }}>{t(`exp_${num}_empresa`)}</h4>
-                <p style={{ margin: 0, lineHeight: '1.7', color: theme.textSecondary, fontSize: '1.1rem' }}>{t(`exp_${num}_desc`)}</p>
+                <p style={{ margin: 0, lineHeight: '1.7', color: theme.textSecondary, fontSize: '1.1rem', whiteSpace: 'pre-line' }}>{t(`exp_${num}_desc`)}</p>
               </div>
             ))}
           </div>
@@ -340,8 +352,26 @@ function App() {
             <h2 style={{ margin: '0 0 35px 0', fontSize: '2.8rem', color: '#FF7F50' }}>{t('contacto_titulo')}</h2>
             <form onSubmit={handleFormSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '20px', marginBottom: '35px' }}>
               <input type="hidden" name="_captcha" value="false" />
-              <input type="text" name="name" placeholder={t('form_nombre')} required className="input-field" style={{ padding: '16px', borderRadius: '10px', border: '1px solid #475569', backgroundColor: 'rgba(255,255,255,0.1)', color: 'white', fontSize: '1.1rem' }} />
-              <textarea name="message" placeholder={t('form_mensaje')} required rows="4" className="input-field" style={{ padding: '16px', borderRadius: '10px', border: '1px solid #475569', backgroundColor: 'rgba(255,255,255,0.1)', color: 'white', fontSize: '1.1rem', resize: 'vertical' }}></textarea>
+              <input 
+                type="text" 
+                name="name" 
+                placeholder={t('form_nombre')} 
+                required 
+                onInvalid={(e) => e.target.setCustomValidity(i18n.language === 'en' ? 'Please fill out this field.' : 'Completa este campo.')}
+                onInput={(e) => e.target.setCustomValidity('')}
+                className="input-field" 
+                style={{ padding: '16px', borderRadius: '10px', border: '1px solid #475569', backgroundColor: 'rgba(255,255,255,0.1)', color: 'white', fontSize: '1.1rem' }} 
+              />
+              <textarea 
+                name="message" 
+                placeholder={t('form_mensaje')} 
+                required 
+                rows="4" 
+                onInvalid={(e) => e.target.setCustomValidity(i18n.language === 'en' ? 'Please fill out this field.' : 'Completa este campo.')}
+                onInput={(e) => e.target.setCustomValidity('')}
+                className="input-field" 
+                style={{ padding: '16px', borderRadius: '10px', border: '1px solid #475569', backgroundColor: 'rgba(255,255,255,0.1)', color: 'white', fontSize: '1.1rem', resize: 'vertical' }}
+              ></textarea>
               <button type="submit" className="btn-primary" style={{ backgroundColor: '#FF7F50', color: 'white', padding: '16px', border: 'none', borderRadius: '10px', fontSize: '1.2rem', fontWeight: 'bold', cursor: 'pointer', marginTop: '10px' }}>
                 {t('btn_enviar')}
               </button>
