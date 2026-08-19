@@ -21,7 +21,7 @@ const resources = {
       "sobre_mi_pers_desc": "Soy una persona amigable y curiosa a la que le encanta explorar, hacer senderismo al aire libre e intentar cosas nuevas. En mi tiempo libre, disfruto mucho salir a correr y mantenerme activo en el gimnasio, escuchar buena música (¡y participar en el karaoke!), ver películas de terror y jugar videojuegos, con una gran afición por los títulos de survival horror y las partidas multijugador.",
       
       "exp_titulo": "Experiencia Laboral",
-      "exp_1_puesto": "Cajero y Atención al Cliente Bilingüe",
+      "exp_1_puesto": "Asistente de Tienda de Licores",
         "exp_1_fecha": "Oct 2024 - Jul 2026",
         "exp_1_empresa": "St. Regis Fine Wines & Spirits / Park Place Lodge — Vancouver / Fernie, BC",
         "exp_1_desc": "• Atención personalizada y bilingüe, verificando identificaciones según la normativa vigente.\n\n• Procesamiento de transacciones POS (efectivo y tarjetas) y gestión de devoluciones.\n\n• Control de inventario (método FIFO) y recepción de envíos de proveedores.\n\n• Cumplimiento estricto de las regulaciones provinciales de venta de alcohol y protocolos de seguridad.",
